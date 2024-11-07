@@ -1,9 +1,12 @@
+# Usage: python tracker.py --input_path <input_video_path> --output_path <output_video_path> --model_path <model_weights_path> --device <device>
+
 import torch
 import cv2
 from ultralytics import YOLO
 from deep_sort_pytorch.deep_sort import DeepSort
 from deep_sort_pytorch.utils.parser import get_config
 import numpy as np
+import argparse
 
 # deepsort配置文件路径
 config_deepsort = "deep_sort_pytorch/configs/deep_sort.yaml"
@@ -65,7 +68,7 @@ class Tracker:
 
         # 还原后的边界框 (x1, y1, x2, y2)
         bbox_xyxy = detections.xyxy.cpu().numpy()
-        confs = detections.conf.cpu().numpy().reshape(-1, 1)  # 置信度
+        confs = detections.conf.cpu().numpy().reshape(-1, 1)  # 信心度
         cls_ids = detections.cls.cpu().numpy().reshape(-1, 1)  # 类别 ID
 
         # 过滤掉无效的边界框
@@ -93,7 +96,7 @@ class Tracker:
             # 如果有检测结果
             if len(detections) > 0:
                 bbox_xyxy = detections.xyxy.cpu().numpy()  # [x1, y1, x2, y2]
-                confs = detections.conf.cpu().numpy()  # 置信度
+                confs = detections.conf.cpu().numpy()  # 信心度
                 cls_ids = detections.cls.cpu().numpy()  # 类别 ID
 
                 # 将边界框从 [x1, y1, x2, y2] 转换为 [cx, cy, w, h]
@@ -142,6 +145,13 @@ class Tracker:
 
 # 主程序
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="YOLOv8 and DeepSORT Tracker")
+    parser.add_argument('--input_path', type=str, required=True, help='Path to input video file')
+    parser.add_argument('--output_path', type=str, required=True, help='Path to output video file')
+    parser.add_argument('--model_path', type=str, default='best.pt', help='Path to YOLOv8 model')
+    parser.add_argument('--device', type=str, default='cuda', choices=['cuda', 'cpu'], help='Device to use (cuda or cpu)')
+    args = parser.parse_args()
+
     # 创建 Tracker 实例并启动追踪
-    tracker = Tracker(input_path="demo.mp4", output_path="output.mp4", device='cuda')
+    tracker = Tracker(input_path=args.input_path, output_path=args.output_path, model_path=args.model_path, device=args.device)
     tracker.track()
