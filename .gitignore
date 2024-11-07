@@ -1,0 +1,16 @@
+# 忽略 IDE 配置
+.idea/
+
+# 忽略模型文件
+best.pt
+yolov8s.pt
+
+# 忽略视频文件
+1.jpg
+demo.mp4
+output.mp4
+
+
+# 忽略 Python 编译文件
+__pycache__/
+*.pyc
