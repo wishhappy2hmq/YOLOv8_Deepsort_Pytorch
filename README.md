@@ -156,7 +156,7 @@ python tracker.py --input_path <input_video_path> --output_path <output_video_pa
 
 - `--input_path`: Path to the input video file.
 - `--output_path`: Path to save the output video file with tracked objects.
-- `--model_path`: Path to the YOLOv8 model weights (default is `best.pt`).
+- `--model_path`: Path to the Trained YOLOv8 model weights (default is `best.pt`).
 - `--device`: Choose either `cuda` for GPU or `cpu` for CPU (default is `cuda`).
 
 ### Example
@@ -347,7 +347,7 @@ python tracker.py --input_path <input_video_path> --output_path <output_video_pa
 
 - `--input_path`：输入视频文件路径。
 - `--output_path`：保存带有跟踪目标的视频文件路径。
-- `--model_path`：YOLOv8 模型权重路径（默认为 `best.pt`）。
+- `--model_path`：您训练的YOLOv8 模型权重路径（默认为 `best.pt`）。
 - `--device`：选择 `cuda`（用于 GPU）或 `cpu`（默认为 `cuda`）。
 
 ### 示例
