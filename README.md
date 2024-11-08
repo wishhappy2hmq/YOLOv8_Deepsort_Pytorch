@@ -180,9 +180,6 @@ The script processes the video, performs object detection and tracking, and outp
 
 If you have any suggestions or improvements, feel free to create an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.
 
 ---
 
@@ -371,7 +368,5 @@ python tracker.py --input_path demo.mp4 --output_path output.mp4 --model_path be
 
 如果您有任何建议或改进，欢迎创建 issue 或提交 pull request。
 
-## 许可证
 
-本项目基于 MIT 许可证。
 
